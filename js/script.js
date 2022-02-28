@@ -2,6 +2,7 @@ const errorMsg = document.getElementById('error-msg');
 // loading data 
 const loadData = () => {
     const searchText = document.getElementById('search-text').value;
+    console.log(typeof(searchText));
     if (searchText == '') {
         errorMsg.innerHTML = `
             <!-- Flexbox container for aligning the toasts -->
@@ -17,9 +18,10 @@ const loadData = () => {
             </div>
           </div>
         </div>`;
+        document.getElementById('phone-container').textContent = '';
     }
 
-    if (isNaN(searchText) == false) {
+    else if (isNaN(searchText) == false) {
         errorMsg.innerHTML = `
         <!-- Flexbox container for aligning the toasts -->
         <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
@@ -34,17 +36,24 @@ const loadData = () => {
         </div>
       </div>
     </div>`;
+    document.getElementById('phone-container').textContent = '';
+   
     }
+    
     else {
+        document.getElementById('phone-container').textContent = '';
         fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`)
             .then(response => response.json())
             .then(data => displayPhone(data.data))
     }
+    document.getElementById('search-text').value = '';
+    
 }
 // displaying phone by search name 
 const displayPhone = (phones) => {
     const phoneContainer = document.getElementById('phone-container');
-    console.log(phones);
+    const top20Phones = phones.slice(0,20);
+    console.log(top20Phones);
     if (phones.length == '') {
         errorMsg.innerHTML = `
         <!-- Flexbox container for aligning the toasts -->
@@ -60,9 +69,11 @@ const displayPhone = (phones) => {
         </div>
       </div>
     </div>`;
+    document.getElementById('phone-container').textContent = '';
     }
-    for (const phone of phones) {
+    for (const phone of top20Phones) {
         // console.log(phone);      
+        document.getElementById('error-msg').textContent = '';
         const div = document.createElement('div');
         div.className = 'col-12 col-md-6 mt-5 col-lg-4';
         div.innerHTML = `
@@ -79,5 +90,7 @@ const displayPhone = (phones) => {
        `;
         phoneContainer.appendChild(div);
     }
+    
+    
 
 }
