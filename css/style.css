@@ -1,0 +1,13 @@
+h1{
+    color: white;
+    letter-spacing: 5px;
+}
+.input-bgColor{
+    background-color: rgb(209, 231, 221);
+}
+.input-bgColor:focus{
+    background-color:rgba(209, 231, 221,.5);
+}
+.input-bgColor::placeholder{
+    color: rgb(71, 159, 118);
+}
