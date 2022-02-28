@@ -16,15 +16,32 @@
 </head>
 
 <body>
-    <h1 class="text-center py-3 bg-danger bg-gradient">Phone-Valley</h1>
-    <div class="d-flex w-75 mx-auto mt-4">
-        <input class="form-control me-2 input-bgColor" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-success" type="submit">Search</button>
-    </div>
+    <!-- header section starts  -->
+    <header>
+        <h1 class="text-center py-3 bg-danger bg-gradient">Phone-Valley</h1>
+    </header>
+    <!-- header section ends  -->
+    <!-- main section starts  -->
+    <main>
+        <div class="container">
+            <!-- search box  -->
+            <div class="d-flex w-75 mx-auto mt-4">
+                <input class="form-control me-2 input-bgColor" id="search-text" type="search" placeholder="Search"
+                    aria-label="Search">
+                <button class="btn btn-success" type="submit" id="search-btn" onclick="loadData()">Search</button>
+            </div>
 
+            <!-- phone container  -->
+            <div class="row mt-5" id="phone-container">
+            </div>
+        </div>
+    </main>
+    <!-- main section ends  -->
+    <br><br><br>
 
     <!-- js file  -->
-    <script src="js/script.js"></script>
+    <script src=" js/script.js">
+    </script>
 </body>
 
 </html>
