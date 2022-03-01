@@ -18,24 +18,21 @@
 <body>
     <!-- header section starts  -->
     <header>
-        <h1 class="text-center py-3 bg-danger bg-gradient">Phone-Valley</h1>
+        <h1 class="text-center bg-dark bg-gradient py-3 text-white">Phone <span class="text-warning">Valley</span></h1>
     </header>
     <!-- header section ends  -->
     <!-- main section starts  -->
     <main>
         <div class="container">
             <!-- search box  -->
-            <div class="d-flex w-75 mx-auto mt-4">
-                <input class="form-control me-2 input-bgColor" id="search-text" type="search" placeholder="Search"
+            <div class="d-flex w-75 mx-auto mt-5">
+                <input class="form-control me-2 input-bgColor" id="search-text" type="search" placeholder="Search phone by name"
                     aria-label="Search">
-                <button class="btn btn-success" type="submit" onclick="loadData()">Search</button>
+                <button class="btn btn-dark" type="submit" onclick="loadData()">Search</button>
             </div>
             <div id="error-msg" class="mt-4">
 
             </div>
-           
-           
-
             <!-- phone container  -->
             <div class="row" id="phone-container">
               

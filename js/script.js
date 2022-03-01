@@ -3,7 +3,6 @@ const errorMsg = document.getElementById('error-msg');
 // loading data 
 const loadData = () => {
     const searchText = document.getElementById('search-text').value;
-    console.log((searchText));
     if (searchText == '') {
         errorMsg.innerHTML = `
             <!-- Flexbox container for aligning the toasts -->
@@ -28,7 +27,7 @@ const loadData = () => {
         <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
     
         <!-- Then put toasts within -->
-        <div class="toast show bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">           
+        <div class="toast show bg-warning text-white" role="alert" aria-live="assertive" aria-atomic="true">           
             <div class="d-flex">
             <div class="toast-body">
                    Please give your favourite phone name..
@@ -53,7 +52,7 @@ const loadData = () => {
 // displaying phone by search name 
 const displayPhone = (phones) => {
     const phoneContainer = document.getElementById('phone-container');
-    const top20Phones = phones.slice(0, 20);
+    // const top20Phones = phones.slice(0, 20);
     // console.log(top20Phones);
     if (phones.length == '') {
         errorMsg.innerHTML = `
@@ -72,13 +71,13 @@ const displayPhone = (phones) => {
     </div>`;
         document.getElementById('phone-container').textContent = '';
     }
-    
-        for (const phone of top20Phones) {
-            // console.log(phone);      
-            document.getElementById('error-msg').textContent = '';
-            const div = document.createElement('div');
-            div.className = 'col-12 col-md-6 mt-5 col-lg-4';
-            div.innerHTML = `
+
+    for (const phone of phones) {
+        // console.log(phone);      
+        document.getElementById('error-msg').textContent = '';
+        const div = document.createElement('div');
+        div.className = 'col-12 col-md-6 mt-5 col-lg-4';
+        div.innerHTML = `
             <div class="card h-100 pt-5 pb-2 px-2">
                 <div class="text-center">
                     <img src="${phone.image}" class="img-fluid" width="233px" height="233px">
@@ -90,15 +89,15 @@ const displayPhone = (phones) => {
                 </div>
             </div>         
        `;
-            phoneContainer.appendChild(div);
-        }  
-       
+        phoneContainer.appendChild(div);
+    }
 }
 const exploreDetails = (slug) => {
     // console.log(slug);
     fetch(`https://openapi.programming-hero.com/api/phone/${slug}`)
         .then(response => response.json())
         .then(data => showDetails(data.data));
+ 
 }
 const showDetails = (details) => {
     console.log(details);
@@ -108,8 +107,8 @@ const showDetails = (details) => {
             <img src="${details.image}" class="img-fluid" width="233px" height="233px">
         </div>
         <div class="card-body">
-            <p>${details?.releaseDate}</p>
-            <p>Chipset: ${details.mainFeatures.chipSet}</p>
+            <p>${details.releaseDate ? details.releaseDate :"data is not available"}</p>
+            <p>Chipset: ${details.mainFeatures.chipSet ? details.mainFeatures.chipSet:'not available'}</p>
             <p>Display size: ${details.mainFeatures.displaySize}</p>
             <p>Memory: ${details.mainFeatures.memory}</p>
             <p>Storage: ${details.mainFeatures.storage}</p>
@@ -119,7 +118,7 @@ const showDetails = (details) => {
                 <li>${details.mainFeatures.sensors[0]}</li>
                 <li>${details.mainFeatures.sensors[1]}</li>
                 <li>${details.mainFeatures.sensors[2]}</li>
-                <li>${details.mainFeatures.sensors[3]}</li>
+                <li>${details.mainFeatures.sensors[3]?details.mainFeatures.sensors[3]:'not available'}</li>
                 <li>${details.mainFeatures.sensors[4]}</li>
                 <li>${details.mainFeatures.sensors[5]}</li>
                 
@@ -129,7 +128,7 @@ const showDetails = (details) => {
             <ul>
                 <li>${details.others.Bluetooth}</li>
                 <li>${details.others.GPS}</li>
-                <li>${details.others.NFS}</li>
+                <li>${details.others.NFC}</li>
                 <li>${details.others.Radio}</li>
                 <li>${details.others.USB}</li>
                 <li>${details.others.WLAN}</li>
@@ -140,4 +139,5 @@ const showDetails = (details) => {
         </div>
     </div>
     `;
+    window.scrollTo(top);
 }

@@ -1,13 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+body{
+    font-family: 'Poppins', sans-serif;
+}
 h1{
-    color: white;
     letter-spacing: 5px;
+    font-weight: 600;
 }
 .input-bgColor{
-    background-color: rgb(209, 231, 221);
+    background-color: rgb(224, 224, 224);
 }
 .input-bgColor:focus{
-    background-color:rgba(209, 231, 221,.5);
+    background-color:rgba(190, 188, 188,.3);
 }
 .input-bgColor::placeholder{
-    color: rgb(71, 159, 118);
+    color: rgba(0, 0, 0, 0.623);
 }
