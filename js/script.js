@@ -2,43 +2,42 @@ const newDiv = document.getElementById('new-div');
 // loading data 
 const loadData = () => {
     const searchText = document.getElementById('search-text').value;
+
+    // error handling 
     if (searchText == '') {
         newDiv.innerHTML = `
             <!-- Flexbox container for aligning the toasts -->
-            <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
-        
-            <!-- Then put toasts within -->
-            <div class="toast show bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">           
-                <div class="d-flex">
-                <div class="toast-body">
-                        Search-box can't be empty!!
+            <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">      
+                <!-- Then put toasts within -->
+                <div class="toast show bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">           
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            Search-box can't be empty!!
+                        </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
                 </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-          </div>
-        </div>`;
+            </div>`;
         document.getElementById('phone-container').textContent = '';
     }
 
     else if (isNaN(searchText) == false) {
         newDiv.innerHTML = `
-        <!-- Flexbox container for aligning the toasts -->
-        <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
-    
-        <!-- Then put toasts within -->
-        <div class="toast show bg-warning text-white" role="alert" aria-live="assertive" aria-atomic="true">           
-            <div class="d-flex">
-            <div class="toast-body">
-                   Please give your favourite phone name..
-            </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-      </div>
-    </div>`;
+            <!-- Flexbox container for aligning the toasts -->
+            <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">  
+            <!-- Then put toasts within -->
+                <div class="toast show bg-warning text-white" role="alert" aria-live="assertive" aria-atomic="true">           
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            Please give your favourite phone name..
+                         </div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>`;
         document.getElementById('phone-container').textContent = '';
-
     }
-
+    // fetching data here 
     else {
         document.getElementById('phone-container').textContent = '';
         fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`)
@@ -52,27 +51,25 @@ const loadData = () => {
 const displayPhone = (phones) => {
     const phoneContainer = document.getElementById('phone-container');
     const top20Phones = phones.slice(0, 20);
-    // console.log(top20Phones);
     if (phones.length == '') {
         newDiv.innerHTML = `
         <!-- Flexbox container for aligning the toasts -->
         <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
     
         <!-- Then put toasts within -->
-        <div class="toast show bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">           
-            <div class="d-flex">
-            <div class="toast-body">
-                   No results found...
+            <div class="toast show bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">           
+                <div class="d-flex">
+                    <div class="toast-body">
+                        No results found...
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
             </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-      </div>
-    </div>`;
+        </div>`;
         document.getElementById('phone-container').textContent = '';
     }
 
-    for (const phone of  top20Phones) {
-        // console.log(phone);      
+    for (const phone of top20Phones) {     
         document.getElementById('new-div').textContent = '';
         const div = document.createElement('div');
         div.className = 'col-12 col-md-6 col-lg-4 mb-4';
@@ -91,8 +88,8 @@ const displayPhone = (phones) => {
         phoneContainer.appendChild(div);
     }
 }
+// exploring details 
 const exploreDetails = (slug) => {
-    // console.log(slug);
     fetch(`https://openapi.programming-hero.com/api/phone/${slug}`)
         .then(response => response.json())
         .then(data => showDetails(data.data));
@@ -101,7 +98,6 @@ const exploreDetails = (slug) => {
 const showDetails = (details) => {
     console.log(details);
     newDiv.innerHTML = `
-        
             <div class="row shadow text-dark py-5 mt-5 d-md-flex align-items-md-center rounded">
                 <div class="col-12 col-md-5 text-center">
                     <img src="${details.image}" alt="" width="270px" height="400px">
@@ -133,9 +129,7 @@ const showDetails = (details) => {
                             <li><span class="fw-bold text-dark">WLAN:</span> ${details?.others?.WLAN ? details.others.WLAN : 'not available'}</li>
                         </ul>
                 </div>
-            </div>
-     
-    
+            </div>  
     `;
     window.scrollTo(top);
 }
