@@ -96,7 +96,6 @@ const exploreDetails = (slug) => {
 
 }
 const showDetails = (details) => {
-    console.log(details);
     newDiv.innerHTML = `
             <div class="row shadow text-dark py-5 mt-5 d-md-flex align-items-md-center rounded">
                 <div class="col-12 col-md-5 text-center">
