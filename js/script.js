@@ -69,7 +69,7 @@ const displayPhone = (phones) => {
         document.getElementById('phone-container').textContent = '';
     }
 
-    for (const phone of top20Phones) {     
+    for (const phone of top20Phones) {
         document.getElementById('new-div').textContent = '';
         const div = document.createElement('div');
         div.className = 'col-12 col-md-6 col-lg-4 mb-4';
