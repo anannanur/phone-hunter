@@ -26,7 +26,7 @@ const loadData = () => {
             <!-- Flexbox container for aligning the toasts -->
             <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">  
             <!-- Then put toasts within -->
-                <div class="toast show bg-warning text-white" role="alert" aria-live="assertive" aria-atomic="true">           
+                <div class="toast show bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">           
                     <div class="d-flex">
                         <div class="toast-body">
                             Please give your favourite phone name..
@@ -60,7 +60,7 @@ const displayPhone = (phones) => {
             <div class="toast show bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">           
                 <div class="d-flex">
                     <div class="toast-body">
-                        No results found...
+                        No phone found of this name...
                     </div>
                     <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
